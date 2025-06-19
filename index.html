@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رشفة - متجر الكتب العربي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f5f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* الترويسة */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6582 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 32px;
+            color: #f39c12;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #f39c12;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            color: #f39c12;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .search-box {
+            display: flex;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 8px 15px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+            width: 200px;
+            font-size: 16px;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 22px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* القسم الرئيسي */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* أقسام الكتب */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 32px;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #f39c12;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .book-image {
+            height: 280px;
+            overflow: hidden;
+        }
+        
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .book-card:hover .book-image img {
+            transform: scale(1.05);
+        }
+        
+        .book-info {
+            padding: 20px;
+        }
+        
+        .book-category {
+            color: #f39c12;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .book-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .book-author {
+            color: #7f8c8d;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .book-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .add-to-cart {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+        
+        /* الفئات */
+        .categories {
+            background: #ecf0f1;
+            padding: 50px 0;
+        }
+        
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: #f39c12;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .category-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        /* التذييل */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #f39c12;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #f39c12;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #f39c12;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+        
+        /* سلة التسوق */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 100px;
+            margin-right: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #e74c3c;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 28px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 0 8px;
+        }
+        
+        .remove-item {
+            margin-left: 15px;
+            color: #e74c3c;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cart-total {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total-price {
+            font-weight: 700;
+            font-size: 20px;
+            color: #e74c3c;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        /* التجاوب */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .search-box input {
+                width: 150px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .books-container {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .search-box {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .categories-container {
+                gap: 15px;
+            }
+            
+            .category-card {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الترويسة -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <h1><span>ر</span>شفة</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">الرئيسية</a></li>
+                    <li><a href="#">الكتب</a></li>
+                    <li><a href="#">الفئات</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">المؤلفون</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="ابحث عن كتاب...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>اكتشف عوالم جديدة مع كتب رشفة</h2>
+            <p>أكبر تشكيلة من الكتب العربية في مختلف المجالات، روايات، علمية، تاريخية، تنمية بشرية وغيرها الكثير</p>
+            <a href="#" class="btn">تصفح الكتب الآن</a>
+        </div>
+    </section>
+
+    <!-- الكتب المميزة -->
+    <section class="featured-books">
+        <div class="container">
+            <h2 class="section-title">كتب مميزة</h2>
+            <div class="books-container">
+                <!-- كتاب 1 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="رواية العشق والغضب">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">روايات</div>
+                        <h3 class="book-title">العشق والغضب</h3>
+                        <div class="book-author">أحمد خالد توفيق</div>
+                        <div class="book-price">
+                            <div class="price">45 ر.س</div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- كتاب 2 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="فكر تصبح غنياً">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">تنمية بشرية</div>
+                        <h3 class="book-title">فكر تصبح غنياً</h3>
+                        <div class="book-author">نابليون هيل</div>
+                        <div class="book-price">
+                            <div class="price">60 ر.س</div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- كتاب 3 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="تاريخ الحضارات">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">تاريخ</div>
+                        <h3 class="book-title">تاريخ الحضارات</h3>
+                        <div class="book-author">ول ديورانت</div>
+                        <div class="book-price">
+                            <div class="price">75 ر.س</div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- كتاب 4 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="الذكاء العاطفي">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">علم النفس</div>
+                        <h3 class="book-title">الذكاء العاطفي</h3>
+                        <div class="book-author">دانيال جولمان</div>
+                        <div class="book-price">
+                            <div class="price">55 ر.س</div>
+                            <div class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- العروض الخاصة -->
+    <section class="special-offers">
+        <div class="container">
+            <h2 class="section-title">عروض خاصة</h2>
+            <div class="books-container">
+                <!-- كتاب 5 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="قواعد السطوة">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">فلسفة</div>
+                        <h3 class="book-title">48 قانوناً للقوة</h3>
+                        <div class="book-author">روبرت غرين</div>
+                        <div class="book-price">
+                            <div class="price" style="color: #e74c3c; text-decoration: line-through;">70 ر.س</div>
+                            <div class="price">49 ر.س</div>
+                        </div>
+                        <div class="add-to-cart">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- كتاب 6 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="العادات الذرية">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">تطوير الذات</div>
+                        <h3 class="book-title">العادات الذرية</h3>
+                        <div class="book-author">جيمس كلير</div>
+                        <div class="book-price">
+                            <div class="price" style="color: #e74c3c; text-decoration: line-through;">65 ر.س</div>
+                            <div class="price">45 ر.س</div>
+                        </div>
+                        <div class="add-to-cart">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- كتاب 7 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="قوة التفكير">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">علم النفس</div>
+                        <h3 class="book-title">قوة عقلك الباطن</h3>
+                        <div class="book-author">جوزيف ميرفي</div>
+                        <div class="book-price">
+                            <div class="price" style="color: #e74c3c; text-decoration: line-through;">50 ر.س</div>
+                            <div class="price">35 ر.س</div>
+                        </div>
+                        <div class="add-to-cart">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- كتاب 8 -->
+                <div class="book-card">
+                    <div class="book-image">
+                        <img src="https://images.unsplash.com/photo-1531346790731-7c2494b9d7b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="الرحيق المختوم">
+                    </div>
+                    <div class="book-info">
+                        <div class="book-category">سيرة نبوية</div>
+                        <h3 class="book-title">الرحيق المختوم</h3>
+                        <div class="book-author">صفى الرحمن المباركفوري</div>
+                        <div class="book-price">
+                            <div class="price" style="color: #e74c3c; text-decoration: line-through;">40 ر.س</div>
+                            <div class="price">25 ر.س</div>
+                        </div>
+                        <div class="add-to-cart">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفئات -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">فئات الكتب</h2>
+            <div class="categories-container">
+                <!-- فئة 1 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="category-name">روايات</div>
+                </div>
+                
+                <!-- فئة 2 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="category-name">علمية</div>
+                </div>
+                
+                <!-- فئة 3 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="category-name">تاريخية</div>
+                </div>
+                
+                <!-- فئة 4 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="category-name">دينية</div>
+                </div>
+                
+                <!-- فئة 5 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="category-name">اقتصاد</div>
+                </div>
+                
+                <!-- فئة 6 -->
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="category-name">أطفال</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن رشفة</h3>
+                    <p>متجر كتب عربي يهدف إلى نشر المعرفة والثقافة من خلال توفير أفضل الكتب العربية في مختلف المجالات.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">الكتب الجديدة</a></li>
+                        <li><a href="#">الأكثر مبيعاً</a></li>
+                        <li><a href="#">العروض الخاصة</a></li>
+                        <li><a href="#">المؤلفون</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات الاتصال</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone"></i> +966 11 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@rashfah.com</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية ليصلك كل جديد عن العروض والكتب الجديدة.</p>
+                    <div class="search-box" style="background: rgba(255,255,255,0.1); margin-top: 15px;">
+                        <input type="email" placeholder="بريدك الإلكتروني">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 رشفة - جميع الحقوق محفوظة
+            </div>
+        </div>
+    </footer>
+
+    <!-- سلة التسوق -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>سلة التسوق</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items">
+            <!-- عنصر 1 -->
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="رواية العشق والغضب">
+                </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-title">العشق والغضب</div>
+                    <div class="cart-item-price">45 ر.س</div>
+                    <div class="cart-item-actions">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                        <button class="remove-item"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- عنصر 2 -->
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <img src="https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="48 قانوناً للقوة">
+                </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-title">48 قانوناً للقوة</div>
+                    <div class="cart-item-price">49 ر.س</div>
+                    <div class="cart-item-actions">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="2">
+                        <button class="quantity-btn">+</button>
+                        <button class="remove-item"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cart-total">
+            <div class="total-row">
+                <span>المجموع الفرعي:</span>
+                <span>143 ر.س</span>
+            </div>
+            <div class="total-row">
+                <span>الشحن:</span>
+                <span>15 ر.س</span>
+            </div>
+            <div class="total-row">
+                <span>الإجمالي:</span>
+                <span class="total-price">158 ر.س</span>
+            </div>
+            <button class="btn checkout-btn">إتمام الشراء</button>
+        </div>
+    </div>
+
+    <script>
+        // تفعيل سلة التسوق
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.getElementById('cartIcon');
+            const cartModal = document.getElementById('cartModal');
+            const closeCart = document.getElementById('closeCart');
+            
+            // فتح سلة التسوق
+            cartIcon.addEventListener('click', function() {
+                cartModal.classList.add('open');
+            });
+            
+            // إغلاق سلة التسوق
+            closeCart.addEventListener('click', function() {
+                cartModal.classList.remove('open');
+            });
+            
+            // إضافة عناصر إلى السلة
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartCount = document.querySelector('.cart-count');
+                    let count = parseInt(cartCount.textContent);
+                    cartCount.textContent = count + 1;
+                    
+                    // رسالة تأكيد الإضافة
+                    alert('تمت إضافة المنتج إلى سلة التسوق!');
+                });
+            });
+            
+            // زيادة/تقليل الكمية في السلة
+            const quantityBtns = document.querySelectorAll('.quantity-btn');
+            quantityBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('.quantity-input');
+                    let value = parseInt(input.value);
+                    
+                    if(this.textContent === '+' && value < 10) {
+                        input.value = value + 1;
+                    } else if(this.textContent === '-' && value > 1) {
+                        input.value = value - 1;
+                    }
+                    
+                    // هنا يمكن إضافة تحديث الإجمالي
+                });
+            });
+            
+            // إزالة العناصر من السلة
+            const removeBtns = document.querySelectorAll('.remove-item');
+            removeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    cartItem.remove();
+                    
+                    const cartCount = document.querySelector('.cart-count');
+                    let count = parseInt(cartCount.textContent);
+                    cartCount.textContent = count - 1;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
